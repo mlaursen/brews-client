@@ -1,0 +1,108 @@
+@mixin hamburger-transition($deg, $x, $y) {
+  transform: rotateZ(#{$deg}deg) translate(#{$x}, #{$y});
+}
+
+@mixin hamburger-line {
+  position: absolute;
+  content: '';
+  background-color: $dull-black;
+  transition-duration: $hamburger-transition-time;
+}
+
+@mixin hamburger-size($btn-width, $btn-height, $line-width, $line-height, $line-gutter, $line-offset) {
+  width: $btn-width;
+  height: $btn-height;
+
+  .left-bars,
+  .right-bars {
+    width: $line-width / 2;
+    height: $line-height;
+
+    &:before,
+    &:after {
+      width: $line-width / 2;
+      height: $line-height;
+    }
+
+    &:before {
+      top: -#{$line-gutter};
+    }
+
+    &:after {
+      top: $line-gutter;
+    }
+  }
+
+  .left-bars {
+    left: $line-offset;
+  }
+
+  .right-bars {
+    $offset: if($line-offset == $hamburger-line-offset, 0 , $line-offset);
+    left: ($line-width / 2) + $offset;
+  }
+
+
+  .help-text-bottom {
+    top: $btn-height + 5px;
+  }
+
+  .help-text-top {
+    bottom: $btn-height + 5px;
+  }
+
+  &.hamburger-open {
+
+    .left-bars {
+      &:before {
+        @include hamburger-transition(45, $line-offset, 2px);
+      }
+
+      &:after {
+        @include hamburger-transition(-45, $line-offset, -2px);
+      }
+    }
+
+    .right-bars {
+      &:before {
+        @include hamburger-transition(-45, -#{$line-offset}, 2px);
+      }
+
+      &:after {
+        @include hamburger-transition(45, -#{$line-offset}, -2px);
+      }
+    }
+
+  }
+}
+
+
+.hamburger-btn {
+  position: relative;
+
+  @include hamburger-size($hamburger-btn-width, $hamburger-btn-height, $hamburger-line-width, $hamburger-line-height, $hamburger-line-gutter, $hamburger-line-offset);
+
+  &.hamburger-btn-lg {
+    @include hamburger-size($hamburger-lg-btn-width, $hamburger-lg-btn-height, $hamburger-lg-line-width, $hamburger-lg-line-height, $hamburger-lg-line-gutter, $hamburger-lg-line-offset);
+  }
+
+  .left-bars,
+  .right-bars {
+    top: 50%;
+    @include hamburger-line();
+
+    &:before,
+    &:after {
+      left: 0;
+
+      @include hamburger-line();
+    }
+  }
+
+  &.hamburger-open {
+    .left-bars,
+    .right-bars {
+      background: transparent;
+    }
+  }
+}

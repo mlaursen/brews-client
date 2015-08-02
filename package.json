@@ -1,0 +1,60 @@
+{
+  "name": "brews-client",
+  "version": "1.0.0",
+  "description": "The frontend client for the brews-server using ReactJS",
+  "main": "src/js/main.js",
+  "authors": [
+    {
+      "name": "Mikkel Laursen",
+      "email": "mlaursen03@gmail.com"
+    }
+  ],
+  "scripts": {
+    "postinstall": "node scripts/postinstall"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlaursen/brews-client.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "mlaursen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mlaursen/brews-client/issues"
+  },
+  "homepage": "https://github.com/mlaursen/brews-client#readme",
+  "dependencies": {
+    "autoprefixer-core": "^5.2.1",
+    "bootstrap-sass": "^3.3.5",
+    "browserify": "^11.0.0",
+    "del": "^1.2.0",
+    "events": "^1.0.2",
+    "flux": "^2.0.3",
+    "font-awesome": "^4.3.0",
+    "gulp-if": "^1.2.5",
+    "gulp-postcss": "^5.1.9",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.3",
+    "gulp-ruby-sass": "^1.0.5",
+    "gulp-uglify": "^1.2.0",
+    "normalize-scss-vanilla": "^1.0.1",
+    "react": "^0.13.3",
+    "reactify": "^1.1.1",
+    "request": "^2.60.0",
+    "underscore": "^1.8.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "yargs": "^3.15.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.7.13",
+    "gulp": "^3.9.0"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  }
+}

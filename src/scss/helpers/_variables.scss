@@ -1,0 +1,120 @@
+/** Colors! */
+$red-base: #f44336 !default;
+$pink-base: #e91e63 !default;
+$purple-base: #9c2780 !default;
+$deep-purple-base: #673ab7 !default;
+$indigo-base: #3f51b5 !default;
+$blue-base: #2196f3 !default;
+$light-blue-base: #03a9f4 !default;
+$cyan-base: #00bcd4 !default;
+$teal-base: #009688 !default;
+$grea-base: #4caf50 !default;
+$light-green-base: #8bc34a !default;
+$lime-base: #cddc39 !default;
+$yellow-base: #ffeb3b !default;
+$amber-base: #ffc107 !default;
+$orange-base: #ff9800 !default;
+$deep-orange-base: #ff5722 !default;
+$brown-base: #795548 !default;
+$grey-base: #9e9e9e !default;
+$blue-grey-base: #607d8b !default;
+$black-base: #000000 !default;
+$white-base: #ffffff !default;
+
+
+$dark-divider: lighten($black-base, 88%) !default;
+$dark-disabled-text: lighten($black-base, 74%) !default;
+$dark-hint-text: $dark-disabled-text !default;
+$dark-secondary-text: lighten($black-base, 46%);
+$dark-icon: $dark-secondary-text !default;
+$dark-text: lighten($black-base, 13%) !default;
+
+$light-divider: rgba(254, 254, 254, .12);
+$light-disabled-text: darken($white-base, 30%) !default;
+$light-hint-text: $light-disabled-text !default;
+$light-secondary-text: darken($white-base, 70%) !default;
+$light-icon: $white-base !default;
+$light-text: $white-base !default;
+
+$text-color: $dark-text;
+
+$dull-grey-blue: #D8E3EB !default;
+$dull-black: #4A4A4A !default;
+
+
+/** Unicode characters */
+$unicode-gt: '\003e'; // '>'
+
+/** z-indexes */
+$hamburger-menu-z-index: 4;
+$close-btn-z-index: 6;
+$dd-menu-z-index: 7;
+$help-text-z-index: 8;
+
+
+/** Animation stuffs */
+$default-animation-time: 0.4s !default;
+$default-transition-time: 0.4s !default;
+$default-shake-distance: 8px !default;
+$default-short-slide-distance: 40px !default;
+$default-cubic-in: cubic-bezier(0.5, 1.8, 0.9, 0.8);
+
+
+$input-underline-line-height: 2px;
+
+
+$dd-menu-sm-width: 150px !default;
+$dd-menu-md-width: 300px !default;
+$dd-menu-lg-width: 450px !default;
+
+
+/**
+ * Box Shadow Defaults
+ */
+$default-box-shadow-h-offset: 0 !default;
+$default-box-shadow-v-offset: 0 !default;
+$default-box-shadow-blur: 4px !default;
+$default-box-shadow-spread: null !default;
+$default-box-shadow-color: rgba(0, 0, 0, .15) !default;
+$default-box-shadow-inset: null !default;
+
+
+/** Borders */
+$default-border-width: 1px !default;
+$default-border-style: solid !default;
+$default-border-color: rgba(112, 125, 148, 0.18) !default;
+
+
+/** Bootstrap xl screen stuff */
+$screen-xl-min: 1600px;
+
+
+/** Hamburger menu variables */
+$hamburger-menu-sm-width: 120px;
+$hamburger-menu-md-width: 240px;
+$hamburger-menu-lg-width: 360px;
+$hamburger-menu-z-index: 15;
+
+$hamburger-transition-time: 0.4s;
+$hamburger-line-color: $dull-black;
+
+$hamburger-line-height: 3px;
+$hamburger-line-width: 20px;
+$hamburger-line-gutter: $hamburger-line-height * 2;
+$hamburger-btn-gutter: 3px;
+$hamburger-btn-width: 25px;
+$hamburger-btn-height: $hamburger-line-gutter * 3 + $hamburger-btn-gutter;
+$hamburger-line-offset: ceil(($hamburger-btn-width - $hamburger-line-width) / 2);
+
+$hamburger-lg-line-height: 4px;
+$hamburger-lg-line-width: 30px;
+$hamburger-lg-line-gutter: $hamburger-lg-line-height * 2.5;
+$hamburger-lg-btn-gutter: 4px;
+$hamburger-lg-btn-width: 40px;
+$hamburger-lg-btn-height: $hamburger-lg-line-gutter * 3 + $hamburger-lg-btn-gutter;
+$hamburger-lg-line-offset: (($hamburger-lg-btn-width - $hamburger-lg-line-width) / 2);
+
+
+/** Help text variables */
+$help-text-arrow-size: 8px;
+$help-text-font-size: $font-size-base - 2px;

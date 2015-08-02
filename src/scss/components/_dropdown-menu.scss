@@ -1,0 +1,92 @@
+/* Had to do dd-menu since dropdown-menu is already specified by bootstrap.. */
+.dd-menu {
+  display: inline-block;
+  position: relative;
+
+  &.pull-right {
+    text-align: right;
+
+    .dd-menu-items {
+      right: 0;
+    }
+  }
+
+  &.pull-left {
+    text-align: left;
+
+    .dd-menu-items {
+      left: 0;
+    }
+  }
+
+  &.dd-menu-sm {
+    .dd-menu-items {
+      width: $dd-menu-sm-width;
+    }
+  }
+
+  &.dd-menu-md {
+    .dd-menu-items {
+      width: $dd-menu-md-width;
+    }
+  }
+
+  &.dd-menu-lg {
+    .dd-menu-items {
+      width: $dd-menu-lg-width;
+    }
+  }
+
+  &.dd-menu-inverse {
+    > .dd-menu-items {
+      > ol,
+      > ul {
+        background-color: $dull-black;
+        color: $white-base;
+
+        > li {
+          &:hover,
+          &:focus {
+            background-color: rgba(241, 241, 241, .15);
+          }
+        }
+      }
+    }
+  }
+
+  .dd-menu-items {
+    position: absolute;
+    z-index: $dd-menu-z-index;
+    margin-top: 0.5em;
+
+    > ul,
+    > ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background-color: #fefefe;
+      @include menu-box-shadow();
+
+      > li {
+        > button,
+        > a {
+          font-size: 1em;
+          white-space: pre;
+          padding: 1em 1.5em;
+          font-family: 'Roboto', sans-serif;
+
+          &:hover,
+          &:focus {
+            background-color: lighten($blue-grey-base, 26%);
+            outline: none;
+          }
+        }
+
+        > button {
+          @extend .clear-btn;
+        }
+
+      }
+    }
+  }
+}

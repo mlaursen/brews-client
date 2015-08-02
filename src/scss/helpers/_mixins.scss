@@ -1,0 +1,104 @@
+/* From compass */
+@function compact($var-1,        $var-2: false,
+                  $var-3: false, $var-4: false,
+                  $var-5: false, $var-6: false,
+                  $var-7: false, $var-8: false,
+                  $var-9: false, $var-10: false) {
+  $full: $var-1;
+  $vars: $var-2, $var-3, $var-4, $var-5,
+         $var-6, $var-7, $var-8, $var-9, $var-10;
+
+  @each $var in $vars {
+    @if $var {
+      $full: $full, $var;
+    }
+  }
+  @return $full;
+}
+
+
+@function set-arglist-default($arglist, $default) {
+  $default-index: index($arglist, default);
+  @if $default-index {
+    $arglist: set-nth($arglist, $default-index, $default)
+  }
+  @return if(length($arglist) > 0, $arglist, $default);
+}
+
+
+/* End copy/paste from compass */
+
+
+/** Box shadows */
+@function default-box-shadow() {
+  @return compact(if($default-box-shadow-inset, inset, null) $default-box-shadow-h-offset $default-box-shadow-v-offset $default-box-shadow-blur $default-box-shadow-color)
+}
+
+@mixin box-shadow($shadow...) {
+  $shadow: set-arglist-default($shadow, default-box-shadow());
+  -webkit-box-shadow: $shadow;
+     -moz-box-shadow: $shadow;
+          box-shadow: $shadow;
+}
+
+@mixin menu-box-shadow() {
+  $shadow: default-box-shadow(), 0 2px 4px rgba(0, 0, 0, .29);
+  -webkit-box-shadow: $shadow;
+     -moz-box-shadow: $shadow;
+          box-shadow: $shadow;
+}
+
+
+/** Borders */
+@function default-border() {
+  @return compact($default-border-width $default-border-style $default-border-color);
+}
+
+@mixin border($border...) {
+  $border: set-arglist-default($border, default-border());
+  border: $border;
+}
+
+
+
+/** Puts an element at absolute 0 and doesn't take up space on the page */
+@mixin absolute-zero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  line-height: 0;
+}
+
+/**
+ * Hides a component by setting all of the attributes to 0 that help it take up space on the screen.
+ * This goes really well with animation. Look at hide-class for an example
+ */
+@mixin hidden {
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  opacity: 0 !important;
+}
+
+
+/**
+ * Hides a component by using the hidden mixin as well as animating the width, height
+ * margin, padding and opacity of the component to the given time.
+ *
+ * Any other transitions can be added as well.
+ *
+ * It also creates a .$prefix-hidden class so this can be toggled.
+ * Ex: hide-class(btn) -> &.btn-hidden
+ */
+@mixin hide-class($prefix, $time: 0.8s, $transitions: null) {
+  $hide-transition: width $time, height $time, margin $time, padding $time, opacity $time;
+  
+  transition: compact($hide-transition, $transitions);
+
+  &.#{$prefix}-hidden {
+    @include hidden();
+  }
+}

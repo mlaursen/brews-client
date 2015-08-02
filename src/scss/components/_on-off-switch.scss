@@ -1,0 +1,128 @@
+/*
+ * Webkits are stupid. Ex: Chrome
+ * Whenever a translate animation happens, it blurs all the text on the screen.
+ * To combat this, you can hack it with translate3d(x, y, z) instead of translate(x, y)
+ *
+ * There is a fix somewhere to get rid of the webkit antialiasing, but I don't want to search for it
+ */
+
+$switch-button-height: 24px;
+$switch-button-width: 60px;
+$switch-button-transition: 0.25s ease-out 0.10s;
+$switch-button-ball-size: $switch-button-height - 6px; // For border-radius on ball and switch
+$switch-button-top-offset: 5px;
+$switch-button-white: #fefefe;
+$switch-button-off-background: #BDBDBD; // silver
+$switch-button-on-background: #4CAF50; // green
+$switch-button-on-offset: 7px;
+
+
+.switch-button-container {
+
+  .switch-label {
+    vertical-align: top;
+    margin: $switch-button-top-offset 0;
+    cursor: pointer;
+  }
+
+  .switch-button {
+    display: inline-block;
+    position: relative;
+    height: $switch-button-height + 6px;
+    width: $switch-button-width;
+
+    .switch-on,
+    .switch-off {
+      cursor: pointer;
+    }
+
+    .switch-on,
+    .switch-off {
+      font-size: 0.9em;
+      font-weight: 800;
+      display: block;
+      position: absolute;
+      top: $switch-button-top-offset;
+      text-transform: uppercase;
+
+      transition: opacity $switch-button-transition;
+    }
+
+    .switch-on {
+      color: $switch-button-white;
+      opacity: 0;
+      left: $switch-button-on-offset;
+    }
+
+    .switch-off {
+      right: 10px;
+    }
+
+    // Changing the display of a checkbox to be a on-off switch
+    input[type="checkbox"] {
+      display: none;
+      + .checkbox {
+
+        @include absolute-zero;
+
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+        }
+        
+        // Creating the switch background
+        &:before {
+          border-radius: 20px;
+          background: $switch-button-off-background;
+          height: $switch-button-height;
+          width: $switch-button-width;
+          top: -8px;
+          left: -4px;
+
+          transition: background-color $switch-button-transition;
+        }
+
+        // Creating the switch ball
+        &:after {
+          top: -5px;
+          border-radius: 50%;
+          background: $switch-button-white;
+          height: $switch-button-ball-size;
+          width: $switch-button-ball-size;
+
+          transition: transform $switch-button-transition;
+          transform: translate3d(0, 0, 0);
+
+          @include box-shadow();
+        }
+      }
+
+
+      // Starting the magic
+      &:checked {
+        
+        + .checkbox {
+          &:before {
+            background: $switch-button-on-background;
+          }
+
+          // Move the ball to the far right when checked
+          &:after {
+            transform: translate3d($switch-button-width - $switch-button-ball-size - $switch-button-on-offset, 0, 0);
+          }
+        }
+
+        // Find the closest relative element with the css class 'switch-off' and change opacity to invisible
+        ~ .switch-off {
+          opacity: 0;
+        }
+
+        // Find the closest relative element witht he css class 'switch-on' and change opacity to visible
+        ~ .switch-on {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

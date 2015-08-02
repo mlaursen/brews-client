@@ -1,0 +1,153 @@
+.clear-btn {
+  border: none;
+  background-color: transparent;
+}
+
+.icon-btn {
+  position: relative;
+  @extend .clear-btn;
+  
+  &:focus:not(.tab-focus) {
+    outline: none;
+  }
+
+  &.close-btn {
+    position: absolute;
+    z-index: $close-btn-z-index;
+    right: 1em;
+    top: 0.5em;
+
+    &:hover > .fa {
+      transform: scale(1.1);
+    }
+  }
+
+  &.circle-btn {
+    border-radius: 50%;
+
+    border: 1px solid $dark-icon;
+
+    &.active,
+    &:hover {
+      @include box-shadow();
+    }
+
+    > .fa {
+      padding: 0.5em;
+    }
+  }
+
+  &.white {
+    background: #fff;
+  }
+
+  &.help-text-visible {
+    > [class^='help-text'],
+    > [class^='help-text']:before {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    > .help-text-top,
+    > .help-text-bottom {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Matches any class that starts with 'help-text' */
+  > [class^='help-text'] {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    padding: 0.25em 0.5em;
+    background: $dull-black;
+    color: $white-base;
+    font-family: 'Monstserrat', sans-serif;
+    font-size: $help-text-font-size;
+    font-weight: 600;
+    white-space: pre;
+
+    z-index: $help-text-z-index;
+    @include menu-box-shadow();
+
+    /* The before attributes for the 4 help text locations are how we draw the arrow */
+    &:before {
+      content: '';
+      width: 0;
+      height: 0;
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      z-index: $help-text-z-index;
+    }
+  }
+
+  /* The positioning of left and translate at 50% is to auto center the helptext */
+  > .help-text-top {
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &:before {
+      bottom: -$help-text-arrow-size;
+      left: 50%;
+      border-left: solid $help-text-arrow-size transparent;
+      border-right: solid $help-text-arrow-size transparent;
+      border-top: solid $help-text-arrow-size $dull-black;
+
+      transform: translateX(-50%);
+    }
+  }
+
+  > .help-text-right {
+    left: 110%;
+    top: 0;
+
+    &:before {
+      left: -$help-text-arrow-size;
+      top: $help-text-arrow-size / 2;
+      border-top: solid $help-text-arrow-size transparent;
+      border-bottom: solid $help-text-arrow-size transparent;
+      border-right: solid $help-text-arrow-size $dull-black;
+    }
+  }
+
+  /* The positioning of left and translate at 50% is to auto center the helptext */
+  > .help-text-bottom {
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &:before {
+      top: -$help-text-arrow-size;
+      left: 50%;
+      border-left: solid $help-text-arrow-size transparent;
+      border-right: solid $help-text-arrow-size transparent;
+      border-bottom: solid $help-text-arrow-size $dull-black;
+
+      transform: translateX(-50%);
+    }
+  }
+
+  > .help-text-left {
+    right: 110%;
+    top: 0;
+
+    &:before {
+      right: -$help-text-arrow-size;
+      top: $help-text-arrow-size / 2;
+      border-top: solid $help-text-arrow-size transparent;
+      border-bottom: solid $help-text-arrow-size transparent;
+      border-left: solid $help-text-arrow-size $dull-black;
+    }
+  }
+}
+
+.btn-icon-text {
+  font-weight: 600;
+
+  > .fa {
+    margin-right: 0.5em;
+  }
+}

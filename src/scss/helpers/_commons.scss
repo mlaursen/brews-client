@@ -1,0 +1,9 @@
+.clickable {
+  cursor: pointer;
+}
+
+.separator {
+  &:before {
+    content: '|';
+  }
+}

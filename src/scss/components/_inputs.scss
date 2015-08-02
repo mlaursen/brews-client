@@ -1,0 +1,73 @@
+
+.input-underline-container {
+  margin-top: -1em;
+  position: relative;
+  font-size: 1.2em;
+
+  label {
+    cursor: text;
+    font-size: 0.85em;
+    color: $dark-secondary-text;
+    transform: translate(1em, 35px);
+    transition: transform $default-transition-time;
+
+    &.active {
+      transform: translate(2px, 8px);
+    }
+  }
+
+  input[type="text"] {
+    padding: 0.3em 1.5em 0.3em 0.3em;
+    background: none;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid $dark-icon;
+
+    &:focus {
+      outline: none;
+    }
+
+    // Removes the built in MS X button
+    &::-ms-clear {
+      display: none;
+    }
+
+    &:focus,
+    &.active,
+    &:active {
+      + span {
+        background: $blue-base;
+        width: 100%;
+      }
+    }
+  }
+
+  > span {
+    content: '';
+    display: block;
+    height: $input-underline-line-height;
+    width: 0;
+    background: transparent;
+    transition: width $default-transition-time ease, background-color $default-transition-time ease;
+  }
+
+  &.from-left > span {
+    margin-right: auto;
+  }
+
+  &.from-center > span {
+    margin: auto;
+  }
+
+  &.from-right > span {
+    margin-left: auto;
+  }
+
+  button {
+    position: absolute;
+    top: 1.8em;
+    right: 0;
+
+    @extend .icon-btn;
+  }
+}
