@@ -5,6 +5,7 @@ const PROJECT_NAME = 'brews';
 const VENDORS = './src/scss/vendors';
 const CONFIG = './config/gulp-dev-config.json';
 const API_SETTINGS = './config/ApiSettings.js';
+const KEYCLOAK = './config/keycloak.json';
 
 function copyFile(srcFile, destFile, completedMsg) {
   if(fs.existsSync(destFile)) {
@@ -22,6 +23,7 @@ function copyFile(srcFile, destFile, completedMsg) {
 
 copyFile(CONFIG + '.example', CONFIG, 'Your configuration file has been copied with the defaults as \'' + CONFIG + '\'');
 copyFile(API_SETTINGS + '.example', API_SETTINGS, 'Your ApiSettings has been copied with the defaults as \'' + API_SETTINGS + '\'');
+copyFile(KEYCLOAK + '.example', KEYCLOAK, 'The keycloak config has been copied with the defaults as \'' + KEYCLOAK + '\'');
 
 /*
  * A list of symlinks to create. Currently the vendors are all from npm, but
@@ -32,6 +34,12 @@ copyFile(API_SETTINGS + '.example', API_SETTINGS, 'Your ApiSettings has been cop
  * @param name - the name of the symlink
  */
 var LINKS = [
+  {
+    source: './src/js',
+    target: './node_modules/brews',
+    type: 'dir',
+    name: 'brews',
+  },
   {
     source: './node_modules/bootstrap-sass/assets/stylesheets',
     target: VENDORS + '/bootstrap',

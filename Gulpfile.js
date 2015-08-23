@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     replace = require('gulp-replace'),
     argv = require('yargs').argv,
     uglify = require('gulp-uglify'),
+    reactify = require('reactify'),
     browserSync = require('browser-sync');
 
 
@@ -27,7 +28,11 @@ const FONTS = '/fonts';
 
 const MAIN = 'main.js';
 const LIBS = 'libs.js';
-const STATICS = [APP + '/**/*.+(png|jpg|jpeg|ico|json|html|mp3|ttf)', '!' + APP + SCSS + '/**/*'];
+const STATICS = [
+  APP + '/**/*.+(png|jpg|jpeg|ico|json|html|mp3|ttf)',
+  '!' + APP + SCSS + '/**/*',
+];
+const CONFIGS = './config/keycloak.json';
 
 
 // Any external packages that should be referenced from outside of your 'main.js' file.
@@ -39,6 +44,7 @@ const EXTERNALS = [
   { require: 'flux' },
   { require: 'underscore' },
   { require: './config/ApiSettings.js', expose: 'brews-config' },
+  { require: './bower_components/keycloak/dist/keycloak.js', expose: 'keycloak' },
 ];
 
 const PROD_CONFIG = {
@@ -74,6 +80,8 @@ gulp.task('statics', function() {
   // ex: src/app/fonts/example/Example.ttf -> /dist/fonts/example/Example.ttf
   gulp.src(STATICS, { base: APP })
     .pipe(gulp.dest(DIST));
+
+  gulp.src(CONFIGS).pipe(gulp.dest(DIST));
 
   if(!isProduction) {
     return;
@@ -146,6 +154,7 @@ gulp.task('libs-scripts-watch', ['libs-scripts'], browserSync.reload);
 gulp.task('scripts', function() {
   var b = browserify(CONFIG.browserify);
   b.add(APP + JS + '/' + MAIN);
+  b.transform(reactify);
 
   EXTERNALS.forEach(function(external) {
     if(external.expose) {
@@ -174,7 +183,7 @@ gulp.task('serve', ['dist'], function() {
 
   gulp.watch(APP + JS + '/**/*.js', ['scripts-watch']);
   gulp.watch(APP + SCSS + '/**/*.scss', ['styles-watch']);
-  gulp.watch(STATICS, ['statics-watch']);
+  gulp.watch([STATICS, CONFIGS], ['statics-watch']);
 });
 
 

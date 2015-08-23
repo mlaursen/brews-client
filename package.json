@@ -51,10 +51,5 @@
   "devDependencies": {
     "browser-sync": "^2.7.13",
     "gulp": "^3.9.0"
-  },
-  "browserify": {
-    "transform": [
-      "reactify"
-    ]
   }
 }

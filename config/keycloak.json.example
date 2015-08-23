@@ -1,0 +1,8 @@
+{
+  "realm": "master",
+  "realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmORo4LlLB1gC/jde5cU42bkDCbS0Msc0YWQ3Ejs2TGM0fwjLcVgUQako4i8hkm32YsqkHEMUZ0jWRByWYqZYEy1LW7bl3l44Qj+9iEK2D8O1q5TJl6yYcNWWXSWiLh+H1H9rU7yJe1EeOHh3PfFA5MMUq/Dawm3gTNuzJ28Ya3JWCbmqwJtVvXm3hDVrBA1a+mRtrUnfDawZGlRbBKTs9mJZ48UE9nOWDUXgWTPV/zenIU8C4qe+BlH/ggw2eZIu8RwM/XtMb0kCLANYHhunbzm/ouNNEL7RxnNU9fm82SRludd3o8bcKwhu4jAaRImHvZYGUjDrdw+NyBcNwwXlbQIDAQAB",
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "brews-client",
+  "public-client": true
+}

@@ -1,3 +1,3 @@
 module.exports = {
-  'http://localhost:8080/brews'
+  API_URI: 'http://localhost:8080/brews'
 };
